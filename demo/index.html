@@ -1,12 +1,92 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>EDA License Monitor — Demo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>EDA License Monitor — Interactive Demo</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#14263d;background:#f3f6fa}*{box-sizing:border-box}body{margin:0}button,select,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}.side{background:#142b47;color:#d9e4f1;padding:26px 15px}.brand{font-size:19px;font-weight:800;line-height:1.3;color:white;padding:0 12px}.brand small{display:block;font-size:11px;font-weight:400;color:#a7bfd7;margin-top:5px}.nav{display:flex;flex-direction:column;gap:5px;margin-top:33px}.nav button{border:0;text-align:left;border-radius:8px;background:transparent;color:#d1e0ef;padding:12px;font-size:14px}.nav button:hover,.nav button[aria-current="page"]{background:#2c5379;color:white}.side-note{margin:32px 10px;padding:12px;border:1px solid #48647c;border-radius:10px;font-size:12px;line-height:1.5;color:#c7d9ea}.content{min-width:0;padding:30px clamp(16px,3vw,44px)}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}.top h1{margin:0;font-size:27px;letter-spacing:-.7px}.subtitle{color:#6d7e92;font-size:13px;margin:7px 0 0}.pill{background:#dbeefc;color:#17588c;border:1px solid #b1d8f5;padding:7px 11px;border-radius:100px;font-size:12px;font-weight:700;white-space:nowrap}.toolbar{margin:26px 0 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.toolbar label{font-size:12px;color:#576b80;font-weight:700}.toolbar select,.toolbar input{margin-left:7px;background:white;border:1px solid #d6dfec;border-radius:8px;padding:8px;max-width:180px;color:#263e56}.action{border:1px solid #b9cde2;background:white;color:#1e527c;padding:9px 13px;border-radius:8px;font-weight:700;font-size:12px}.action:hover{background:#eaf3fb}.metrics{display:grid;grid-template-columns:repeat(4,minmax(145px,1fr));gap:15px}.panel,.metric{background:white;border:1px solid #e3eaf3;border-radius:12px;box-shadow:0 2px 9px #1b385009}.metric{padding:18px}.metric .key{font-size:12px;color:#687c91;font-weight:700}.metric .num{font-size:29px;font-weight:780;margin:9px 0 4px}.metric .sub{font-size:12px;color:#6f8092}.grid2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:16px;margin-top:16px}.panel{padding:20px;min-width:0}.panel h2{font-size:16px;margin:0 0 5px}.panel p{margin:0 0 16px;color:#7a8b9e;font-size:12px}.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:12px;min-width:510px}th{text-align:left;color:#73869a;font-size:11px;padding:12px 9px;border-bottom:1px solid #e9edf4}td{padding:12px 9px;border-bottom:1px solid #edf1f6}tr:last-child td{border-bottom:none}.vendor{display:inline-block;background:#e8f0fb;color:#285e91;padding:4px 7px;border-radius:5px;font-weight:650;font-size:11px}.v-Synopsys{background:#f0eafa;color:#7658a0}.v-Siemens{background:#e7f4ec;color:#25714e}.bar{height:7px;width:90px;background:#e9eef4;border-radius:10px;overflow:hidden;display:inline-block;vertical-align:middle}.bar>i{display:block;height:100%;background:#347cbb}.state{padding:4px 7px;border-radius:30px;font-size:10px;font-weight:750;white-space:nowrap}.normal{color:#237a51;background:#e0f5e9}.warning{color:#936109;background:#fff0cd}.critical{color:#a92f45;background:#ffe6ea}.list{display:flex;flex-direction:column;gap:11px}.list>div{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #edf1f6;padding-bottom:10px;font-size:12px}.list small{display:block;color:#8695a4;margin-top:3px}.right{text-align:right}.healthy{color:#198153;font-weight:700}.chart-wrap{height:230px;width:100%}svg{max-width:100%;height:100%}.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:7px;font-size:11px;color:#678}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.empty{padding:24px;text-align:center;color:#79899a}.notice{margin:22px 0 0;color:#62778a;font-size:12px}.hide{display:none!important}.foot{margin:26px 0 0;font-size:11px;color:#77899b}a{color:#2c70a8}.wide{grid-column:1/-1}@media(max-width:1020px){.grid2{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.layout{grid-template-columns:1fr}.side{padding:17px}.side-note{display:none}.nav{flex-direction:row;overflow-x:auto;margin-top:15px}.nav button{white-space:nowrap;padding:9px}.content{padding:20px 12px}.metrics{gap:8px}.metric{padding:13px}.metric .num{font-size:23px}.top h1{font-size:23px}}
+</style>
 </head>
 <body>
-  <h1>EDA License Monitor</h1>
-  <p>Interactive demo — synthetic data only.</p>
+<div class="layout">
+<aside class="side"><div class="brand">▥ EDA License Monitor<small>Offline read-only dashboard</small></div>
+<nav class="nav" aria-label="Dashboard sections">
+<button data-view="Overview" aria-current="page">◈ &nbsp;Overview</button>
+<button data-view="Licenses">▤ &nbsp;Licenses</button>
+<button data-view="Users">♙ &nbsp;Users</button>
+<button data-view="Analytics">▥ &nbsp;Analytics</button>
+<button data-view="System Health">♡ &nbsp;System Health</button>
+</nav>
+<div class="side-note"><strong>PUBLIC DEMO</strong><br>Synthetic data only.<br>No backend, credentials, tracking, or license-server access.</div></aside>
+<main class="content">
+<div class="top"><div><h1 id="view-title">Overview</h1><p class="subtitle" id="view-subtitle">License consumption, sessions, and collection health at a glance</p></div><span class="pill">● Synthetic demo · v0.2.0</span></div>
+<div class="toolbar"><label>Vendor<select id="vendor"><option value="All">All vendors</option><option>Cadence</option><option>Synopsys</option><option value="Siemens">Siemens EDA/MGC</option></select></label><label>Feature<input id="feature" type="search" placeholder="Filter features" maxlength="80" aria-label="Filter features"></label><label>Time range<select id="range"><option value="24">24 hours</option><option value="168">7 days</option><option value="720">30 days</option></select></label><button id="export" class="action" type="button">↓ Export CSV</button><button id="reset" class="action" type="button">Reset filters</button></div>
+<div id="metrics" class="metrics"></div><div id="body"></div>
+<p class="foot">This is an independent demonstration UI. All values, users, hosts, timestamps, and charts are synthetic and illustrative; this page does not connect to the real M01/M02 deployment.</p>
+</main></div>
+<script>
+"use strict";
+// Explicitly fictional demo dataset; never read local files, remote APIs, or user input as HTML.
+const FEATURES=[
+{vendor:"Cadence",feature:"Virtuoso",issued:200,used:182},
+{vendor:"Cadence",feature:"Xcelium",issued:160,used:125},
+{vendor:"Cadence",feature:"Spectre",issued:80,used:36},
+{vendor:"Synopsys",feature:"PrimeTime",issued:120,used:97},
+{vendor:"Synopsys",feature:"VCS",issued:100,used:62},
+{vendor:"Synopsys",feature:"Fusion Compiler",issued:90,used:84},
+{vendor:"Siemens",feature:"Calibre",issued:120,used:92},
+{vendor:"Siemens",feature:"Questa",issued:65,used:23}
+];
+const SESSIONS=[
+{user:"demo_user_01",client:"lab-client-01.invalid",vendor:"Cadence",feature:"Virtuoso",quantity:3},
+{user:"demo_user_02",client:"lab-client-02.invalid",vendor:"Cadence",feature:"Xcelium",quantity:2},
+{user:"demo_user_03",client:"lab-client-03.invalid",vendor:"Synopsys",feature:"PrimeTime",quantity:1},
+{user:"demo_user_04",client:"lab-client-04.invalid",vendor:"Synopsys",feature:"Fusion Compiler",quantity:2},
+{user:"demo_user_05",client:"lab-client-05.invalid",vendor:"Siemens",feature:"Calibre",quantity:1},
+{user:"demo_user_06",client:"lab-client-06.invalid",vendor:"Siemens",feature:"Questa",quantity:1}
+];
+const health=[["Cadence","Success","40 min"],["Synopsys","Success","40 min"],["Siemens EDA/MGC","Success","40 min"]];
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let view="Overview";
+function filtered(){const v=$("vendor").value,q=$("feature").value.trim().toLowerCase();return FEATURES.filter(f=>(v==="All"||f.vendor===v)&&f.feature.toLowerCase().includes(q));}
+function status(f){const p=100*f.used/f.issued;return p>=95?"critical":p>=85?"warning":"normal";}
+function tag(f){let s=status(f);return '<span class="state '+s+'">'+s[0].toUpperCase()+s.slice(1)+'</span>';}
+function panel(title,sub,inner){return '<section class="panel"><h2>'+esc(title)+'</h2><p>'+esc(sub)+'</p>'+inner+'</section>';}
+function table(headers,rows){if(!rows.length)return '<div class="empty">No matching synthetic data.</div>';return '<div class="scroll"><table><thead><tr>'+headers.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';}
+function featureTable(fs){return table(["Vendor","Feature","In use","Issued","Available","Utilization","Status"],fs.map(f=>'<tr><td><span class="vendor v-'+esc(f.vendor)+'">'+esc(f.vendor)+'</span></td><td><strong>'+esc(f.feature)+'</strong></td><td>'+f.used+'</td><td>'+f.issued+'</td><td>'+Math.max(0,f.issued-f.used)+'</td><td><div class="bar"><i style="width:'+Math.min(100,Math.round(f.used/f.issued*100))+'%"></i></div> '+Math.round(f.used/f.issued*100)+'%</td><td>'+tag(f)+'</td></tr>'));}
+function sessionRows(fs){const names=new Set(fs.map(f=>f.feature));return SESSIONS.filter(s=>names.has(s.feature));}
+function sessionTable(rows){return table(["User","Client host","Vendor","Feature","Quantity"],rows.map(s=>'<tr><td>'+esc(s.user)+'</td><td>'+esc(s.client)+'</td><td>'+esc(s.vendor)+'</td><td>'+esc(s.feature)+'</td><td>'+s.quantity+'</td></tr>'));}
+function healthPanel(){const v=$("vendor").value;return panel("Collection Status","Simulated snapshot age: 40 minutes",'<div class="list">'+health.filter(h=>v==="All"||h[0].startsWith(v)).map(h=>'<div><span><strong>'+esc(h[0])+'</strong><small>Last snapshot: '+esc(h[2])+' ago</small></span><span class="healthy">● '+esc(h[1])+'</span></div>').join('')+'</div>');}
+function chart(fs){if(!fs.length)return '<div class="empty">No matching synthetic data.</div>';const colors=["#347cbb","#e39a37","#8864b3","#2d9e80"];const selected=fs.slice(0,4),hours=Number($("range").value),n=16,w=680,h=220,pad=34;
+let svg='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="Illustrative synthetic license utilization trend">';
+for(let y=0;y<=4;y++){let yy=12+y*42;svg+='<line x1="'+pad+'" x2="660" y1="'+yy+'" y2="'+yy+'" stroke="#e3eaf2"/><text x="2" y="'+(yy+4)+'" font-size="11" fill="#8293a4">'+(100-y*25)+'%</text>';}
+selected.forEach((f,j)=>{const pts=Array.from({length:n},(_,i)=>{let base=100*f.used/f.issued;let fluct=Math.sin(i*.7+j*1.5)*9+Math.cos(i*.43+j)*5;let u=Math.max(4,Math.min(99,base+fluct));return (pad+i*(620/(n-1))).toFixed(1)+','+(12+(100-u)*1.68).toFixed(1);});svg+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+colors[j]+'" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>';});
+svg+='<text x="35" y="213" font-size="11" fill="#8293a4">-'+(hours===24?"24 hours":hours===168?"7 days":"30 days")+'</text><text x="603" y="213" font-size="11" fill="#8293a4">Now</text></svg>';
+return '<div class="chart-wrap">'+svg+'</div><div class="legend">'+selected.map((f,j)=>'<span><i class="dot" style="background:'+colors[j]+'"></i>'+esc(f.feature)+'</span>').join('')+'</div>';}
+function render(){const fs=filtered(),ss=sessionRows(fs),used=fs.reduce((a,f)=>a+f.used,0),issued=fs.reduce((a,f)=>a+f.issued,0),v=$("vendor").value;
+const subs={"Overview":"License consumption, sessions, and collection health at a glance","Licenses":"Issued, consumed, and available licenses by feature","Users":"Illustrative active sessions with fictional usernames and hosts","Analytics":"Synthetic observations of feature utilization over time","System Health":"Collector and snapshot health — illustrative status"};
+$("view-title").textContent=view;$("view-subtitle").textContent=subs[view];
+const cards=[["Sources",v==="All"?"3 / 3":"1 / 1","Successful synthetic sources"],["License Features",fs.length,"Matched feature records"],["Licenses In Use",used+" / "+issued,"Current illustrative checkouts"],["Snapshot Age","40 min","Fresh · within 90-minute threshold"]];
+$("metrics").innerHTML=cards.map(c=>'<section class="metric"><div class="key">'+esc(c[0])+'</div><div class="num">'+esc(c[1])+'</div><div class="sub">'+esc(c[2])+'</div></section>').join('');
+const overview='<div class="grid2">'+panel("Top License Features","Current synthetic snapshot",featureTable(fs))+
+panel("Observed Sessions","Fictional users and client hosts",sessionTable(ss.slice(0,5)))+
+panel("Feature Utilization Over Time","Synthetic series — not measured production history",chart(fs))+healthPanel()+'</div>';
+let html="";
+if(view==="Overview")html=overview;
+else if(view==="Licenses")html='<div class="grid2"><div class="wide">'+panel("License Inventory","Filter by vendor and feature",featureTable(fs))+'</div></div>';
+else if(view==="Users")html='<div class="grid2"><div class="wide">'+panel("Observed Sessions","Fictional user sessions from synthetic snapshot",sessionTable(ss))+'</div></div>';
+else if(view==="Analytics")html='<div class="grid2"><div class="wide">'+panel("Utilization Trends","Selectable 24h / 7d / 30d synthetic histories",chart(fs))+'</div></div>';
+else html='<div class="grid2">'+healthPanel()+panel("Demo Status","No services, external APIs, or license servers connected",'<div class="list"><div><span>Data freshness</span><span class="state normal">Fresh (40 min)</span></div><div><span>Latest snapshot</span><strong>Simulated</strong></div><div><span>Input validation</span><strong>Demo only</strong></div><div><span>Mode</span><strong>Read-only</strong></div></div>')+'</div>';
+$("body").innerHTML=html;
+}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>{view=b.dataset.view;document.querySelectorAll(".nav button").forEach(x=>x.removeAttribute("aria-current"));b.setAttribute("aria-current","page");render();}));
+["vendor","range"].forEach(id=>$(id).addEventListener("change",render));$("feature").addEventListener("input",render);
+$("reset").addEventListener("click",()=>{$("vendor").value="All";$("range").value="24";$("feature").value="";render();});
+$("export").addEventListener("click",()=>{const rows=[["Vendor","Feature","In Use","Issued","Available","Utilization Percent"],...filtered().map(f=>[f.vendor,f.feature,f.used,f.issued,f.issued-f.used,Math.round(100*f.used/f.issued)])];
+const csv=rows.map(row=>row.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(",")).join("\r\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");const url=URL.createObjectURL(blob);a.href=url;a.download="eda-license-demo-synthetic.csv";a.click();URL.revokeObjectURL(url);});
+render();
+</script>
 </body>
 </html>
