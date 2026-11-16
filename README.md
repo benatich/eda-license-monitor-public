@@ -1,5 +1,11 @@
 # EDA License Monitor
 
+![Version](https://img.shields.io/badge/version-v0.2.0-blue)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
+![Offline](https://img.shields.io/badge/mode-Offline-green)
+![Read Only](https://img.shields.io/badge/access-Read--only-success)
+
 **Offline • Read-only • FlexNet License Monitoring**
 
 A lightweight, Python-based monitoring solution for EDA license environments, including Cadence, Synopsys and Siemens EDA/MGC.
