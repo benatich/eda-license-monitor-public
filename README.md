@@ -16,6 +16,8 @@ Designed for engineering and infrastructure teams that need visibility into lice
 
 *Dashboard preview using synthetic data — no production information.*
 
+https://benatich.github.io/eda-license-monitor-public/demo/
+
 <img width="1600" height="910" alt="image" src="https://github.com/user-attachments/assets/64ebf0c6-476d-4f26-9a22-97a73330f09c" />
 
 
